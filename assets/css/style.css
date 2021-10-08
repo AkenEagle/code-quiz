@@ -1,0 +1,72 @@
+/* CSS Resets */
+* {
+    box-sizing: border-box;
+}
+
+/* Color variables */
+:root {
+    --green: #4CAF50;
+    --darkGreen: #3e8e41;
+}
+
+/* Modify REM value */
+html {
+    font-size: 10px;
+}
+
+/* Styling for the top bar */
+.top-bar {
+    font-size: 3.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3rem 0rem;
+}
+
+.view-highscores {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Styling for the quiz box */
+.quiz-box {
+    margin-top: 15rem;
+    text-align: center;
+}
+
+.quiz-box h1 {
+    font-size: 5rem;
+}
+
+.quiz-box p {
+    font-size: 3rem;
+}
+
+/* Styling for the button */
+.btn {
+    background-color: var(--green);
+    border: none;
+    border-radius: 1rem;
+    color: white;
+    padding: 1rem 3rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--darkGreen);
+}
+
+/* Mobile view */
+@media only screen and (max-width: 576px) {
+    .top-bar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .quiz-box {
+        margin-top: 3rem;
+    }
+}
