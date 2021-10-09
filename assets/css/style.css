@@ -29,8 +29,8 @@ html {
 
 /* Styling for the quiz box */
 .quiz-box {
-    margin-top: 15rem;
     text-align: center;
+    margin-top: 15rem;
 }
 
 .quiz-box h1 {
@@ -74,6 +74,14 @@ html {
 
 .btn:hover, .btn-answer:hover {
     background-color: var(--darkGreen);
+}
+
+/* For answer feedback (generated in JS) */
+.answer-feedback {
+    margin-top: 4rem;
+    font-weight: 550;
+    font-size: 3rem;
+    font-style: italic;
 }
 
 /* Mobile view */
