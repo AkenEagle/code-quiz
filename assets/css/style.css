@@ -37,17 +37,29 @@ html {
     font-size: 5rem;
 }
 
-/* For questions */
-.quiz-box h2 {
-    font-size: 3.5rem;
-}
-
 .quiz-box p {
     font-size: 3rem;
 }
 
-/* Styling for the button */
-.btn {
+/* For questions (generated in JS) */
+.quiz-box h2 {
+    font-size: 3.5rem;
+}
+
+/* For answers (generated in JS) */
+.btn-answer {
+    margin: auto;
+    margin-top: 2rem;
+    width: max-content;
+}
+
+/* Styling for the Start quiz button */
+.btn-start {
+    display: inline-block;
+}
+
+/*  For both */
+.btn-answer, .btn-start {
     background-color: var(--green);
     border: none;
     border-radius: 1rem;
@@ -55,12 +67,12 @@ html {
     padding: 1rem 3rem;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 3rem;
     cursor: pointer;
+
 }
 
-.btn:hover {
+.btn:hover, .btn-answer:hover {
     background-color: var(--darkGreen);
 }
 

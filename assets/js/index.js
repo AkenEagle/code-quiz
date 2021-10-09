@@ -47,14 +47,14 @@ const renderQuestion = function () {
     h2.appendChild(question);
     divQuiz.appendChild(h2);
 
-    // // Load answers
-    // for (let i = 0; i < 4; i++) {
-    //     const btn = document.createElement("div");
-    //     btn.setAttribute("class", "btn");
-    //     const answer = document.createTextNode(answers[quizStep][i]);
-    //     btn.appendChild(answer);
-    //     divQuiz.appendChild(btn);
-    // }
+    // Load answers
+    for (let i = 0; i < 4; i++) {
+        const btn = document.createElement("div");
+        btn.setAttribute("class", "btn-answer");
+        const answer = document.createTextNode(answers[quizStep][i]);
+        btn.appendChild(answer);
+        divQuiz.appendChild(btn);
+    }
 
 }
 
