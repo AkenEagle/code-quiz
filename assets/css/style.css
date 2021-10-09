@@ -37,6 +37,11 @@ html {
     font-size: 5rem;
 }
 
+/* For questions */
+.quiz-box h2 {
+    font-size: 3.5rem;
+}
+
 .quiz-box p {
     font-size: 3rem;
 }
