@@ -31,22 +31,22 @@ let correctAnswers = [
 
 // Timer
 let timer;
-let allowedTime = 3; // How many seconds will the timer be set
+let allowedTime = 60; // How many seconds will the timer be set
+
+// Function to render out of time
+const renderOutOfTime = function () {
+    console.log("out of time");
+}
 
 // Timer function
 const startTimer = function () {
-    timeValue.textContent = allowedTime;
     if (allowedTime === 0) {
-        clearInterval(startTimer);
-
+        clearInterval(timer);
+        renderOutOfTime();
     } else {
         allowedTime -= 1;
+        timeValue.textContent = allowedTime;
     }
-}
-
-// Function to display answer feedback
-const answerFeedback = function (text) {
-
 }
 
 // Function to render next question
@@ -62,38 +62,60 @@ const renderNextQuestion = function () {
 
 // Function to render when the questions finish
 const renderFinished = function () {
-    
+    divQuiz.innerHTML = "";
+
+    const h2 = document.createElement("h2");
+    h2.innerText = "All done!"
+    divQuiz.appendChild(h2);
+
+    const div = document.createElement("div");
+    div.setAttribute("class", "div-initials");
+    const p = document.createElement("p");
+    p.innerText = "Enter initials:";
+    div.appendChild(p);
+    const textarea = document.createElement("textarea");
+    div.appendChild(textarea);
+    divQuiz.appendChild(div);
+}
+
+// Answer feedback timer and function to remove it after 1 sec
+let feedbackTimer;
+const removeFeedback = function () {
+    const answerFeedback = document.getElementById("answer-feedback");
+    document.body.removeChild(answerFeedback);
+    clearInterval(feedbackTimer);
 }
 
 // Function to handle an answer
 const handleAnswer = function () {
-    const clickedAnswer = this.textContent;
-    let feedbackAnswer;
-    if (correctAnswers.includes(clickedAnswer)) {
-        feedbackAnswer = "Correct!"
-    } else {
-        feedbackAnswer = "Wrong!"
-    }
-
-    // Display feedback
-    const divFeedback = document.createElement("div");
-    divFeedback.setAttribute("class", "answer-feedback")
-    const feedbackText = document.createTextNode(feedbackAnswer);
-    divFeedback.appendChild(feedbackText);
-    divQuiz.appendChild(divFeedback);
-    setTimeout(function() {
-        divQuiz.removeChild(divFeedback);
-    }, 1000);
-
     quizStep += 1;
     if(quizStep == questions.length) {
+        clearInterval(timer);
         renderFinished();
+        return;
     } else {
+        const clickedAnswer = this.textContent;
+        let feedbackAnswer;
+        if (correctAnswers.includes(clickedAnswer)) {
+            feedbackAnswer = "Correct!"
+        } else {
+            allowedTime -= 3;
+            feedbackAnswer = "Wrong!"
+        }
+
+        // Display feedback
+        const divFeedback = document.createElement("div");
+        divFeedback.setAttribute("class", "answer-feedback");
+        divFeedback.setAttribute("id", "answer-feedback");
+        const feedbackText = document.createTextNode(feedbackAnswer);
+        divFeedback.appendChild(feedbackText);
+        document.body.appendChild(divFeedback);
+        feedbackTimer = setInterval(removeFeedback, 1000);
         renderNextQuestion();
     }
 }
 
-// Function to render a question
+// Function to render first question
 const renderFirstQuestion = function () {
     divQuiz.innerHTML = "";
 
@@ -118,6 +140,8 @@ const renderFirstQuestion = function () {
 
 // Function for the start button
 const startQuiz = function () {
+    // Set timer text
+    timeValue.textContent = allowedTime;
     // Start the timer
     timer = setInterval(startTimer, 1000);
 

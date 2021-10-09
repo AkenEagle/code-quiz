@@ -82,6 +82,17 @@ html {
     font-weight: 550;
     font-size: 3rem;
     font-style: italic;
+    text-align: center;
+}
+
+/* For initials div */
+.div-initials {
+    display: flex;
+}
+
+/* For initials textarea (generated in JS) */
+textarea {
+  resize: none;  
 }
 
 /* Mobile view */
