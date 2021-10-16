@@ -3,13 +3,6 @@ const btnStart = document.getElementById("btn-start");
 const timeValue = document.getElementById("time-value");
 const divQuiz = document.getElementById("quiz-box");
 
-// To handle progress
-let quizStep = 0;
-
-// Timer
-let timer;
-let allowedTime = 60; // How many seconds will the timer be set
-
 // Questions
 const questions = [
     // 1
@@ -30,16 +23,32 @@ const questions = [
     correct: "const"}
 ]
 
+// To handle progress
+let quizStep = 0;
+
+// Timer
+let timer;
+let allowedTime = questions.length * 5; // How many seconds will the timer be set
+
 // Function to render out of time
-const renderOutOfTime = function () {
+const renderGameOver = function () {
     divQuiz.innerHTML = "";
+    const divContainer = document.createElement("div");
+    divContainer.setAttribute("class", "game-over");
+  
+    const h2Element = document.createElement("h2");
+    h2Element.textContent = "GAME OVER";
+  
+    divContainer.append(h2Element);
+  
+    divQuiz.append(divContainer);
 }
 
 // Timer function
 const startTimer = function () {
     if (allowedTime <= 0) {
         clearInterval(timer);
-        renderOutOfTime();
+        renderGameOver();
     } else {
         allowedTime -= 1;
         timeValue.textContent = allowedTime;
