@@ -117,7 +117,11 @@ const handleAnswer = function (event) {
         // Display feedback
         if(!document.getElementById("answer-feedback")) {
             const divFeedback = document.createElement("div");
-            divFeedback.setAttribute("class", "answer-feedback");
+            if(feedbackAnswer === "Correct!") {
+                divFeedback.setAttribute("class", "alert-success answer-feedback");
+            } else {
+                divFeedback.setAttribute("class", "alert-danger answer-feedback");
+            }
             divFeedback.setAttribute("id", "answer-feedback");
             divFeedback.textContent = feedbackAnswer;
             document.body.appendChild(divFeedback);    

@@ -37,14 +37,17 @@ body {
 /* Styling for the quiz box */
 .quiz-box {
     text-align: center;
-    margin-top: 15rem;
+    margin-top: 10rem;
+    height: 45rem;
 }
 
 .quiz-box h1 {
     font-size: 5rem;
+    
 }
 
 .quiz-box p {
+    margin: 3rem 0rem;
     font-size: 3rem;
 }
 
