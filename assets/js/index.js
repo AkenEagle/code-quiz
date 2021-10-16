@@ -67,23 +67,81 @@ const renderNextQuestion = function () {
     }
 }
 
+const getFromLocalStorage = function (key, defaultValue) {
+    const localStorageData = JSON.parse(localStorage.getItem(key));
+  
+    if (!localStorageData) {
+      return defaultValue;
+    } else {
+      return localStorageData;
+    }
+  };
+
+const storeScore = function () {
+    // get count value
+    const score = allowedTime;
+  
+    // get user initials from input
+    const initials = document.getElementById("user-initials").value;
+  
+    // construct score object
+    const scoreObject = {
+      score: score,
+      initials: initials,
+    };
+  
+    // get from LS before inserting object
+    const highscores = getFromLocalStorage("highscores", []);
+  
+    // insert the score object
+    highscores.push(scoreObject);
+  
+    // write back to LS
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+  };
+
 // Function to render when the questions finish
 const renderFinished = function () {
     divQuiz.innerHTML = "";
 
-    const h2 = document.createElement("h2");
-    h2.innerText = "All done!"
-    divQuiz.appendChild(h2);
-
-    const div = document.createElement("div");
-    div.setAttribute("class", "div-initials");
-    const p = document.createElement("p");
-    p.innerText = "Enter initials:";
-    div.appendChild(p);
-    const textarea = document.createElement("textarea");
-    div.appendChild(textarea);
-    divQuiz.appendChild(div);
-}
+    const divContainer = document.createElement("div");
+    divContainer.setAttribute("class", "container score-form");
+  
+    const form = document.createElement("form");
+  
+    const h2Element = document.createElement("h2");
+    h2Element.setAttribute("class", "question");
+    h2Element.textContent = "Your score is " + allowedTime;
+  
+    const formContainer = document.createElement("div");
+    formContainer.setAttribute("class", "form-container");
+  
+    const formInputDiv = document.createElement("div");
+    formInputDiv.setAttribute("class", "form-item");
+  
+    const formInput = document.createElement("input");
+    formInput.setAttribute("placeholder", "Enter your initials");
+    formInput.setAttribute("id", "user-initials");
+  
+    const formButtonDiv = document.createElement("div");
+    formButtonDiv.setAttribute("class", "form-item");
+  
+    const formButton = document.createElement("button");
+    formButton.setAttribute("class", "btn");
+    formButton.textContent = "Submit";
+  
+    formInputDiv.append(formInput);
+    formButtonDiv.append(formButton);
+  
+    formContainer.append(formInputDiv, formButtonDiv);
+  
+    form.append(h2Element, formContainer);
+    divContainer.append(form);
+  
+    form.addEventListener("submit", storeScore);
+  
+    divQuiz.appendChild(divContainer);
+};
 
 // Answer feedback timer and function to remove it after 1 sec
 let feedbackTimer;
@@ -155,8 +213,18 @@ const renderFirstQuestion = function () {
     }
 }
 
+const initialLocalStorage = function () {
+    const dataFromLS = JSON.parse(localStorage.getItem("highscores"));
+  
+    if (!dataFromLS) {
+      localStorage.setItem("highscores", JSON.stringify([]));
+    }
+  };
+
 // Function for the start button
 const startQuiz = function () {
+    initialLocalStorage();
+
     // Set timer text
     timeValue.textContent = allowedTime;
 
