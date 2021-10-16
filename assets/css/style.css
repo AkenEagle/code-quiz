@@ -34,6 +34,11 @@ body {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: var(--darkGrey)
+}
+
 /* Styling for the quiz box */
 .quiz-box {
     text-align: center;
@@ -82,6 +87,10 @@ body {
 
 }
 
+.btn-goback {
+    margin-top: 2rem;
+}
+
 /* For answer feedback (generated in JS) */
 .answer-feedback {
     margin-top: 4rem;
@@ -121,6 +130,20 @@ input {
     display: inline-block;
     border: 1px solid var(--darkGrey);
     border-radius: 4px;
+}
+
+.highscores-box button {
+    margin: 2rem;
+}
+
+.initials-div {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.score-div {
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
 }
 
 /* Mobile view */

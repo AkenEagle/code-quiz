@@ -43,6 +43,17 @@ const renderGameOver = function () {
     divContainer.append(h2Element);
   
     divQuiz.append(divContainer);
+
+    const btnGoBack = document.createElement("button");
+    btnGoBack.setAttribute("class", "btn-start btn-goback");
+
+    const link = document.createElement("a");
+    link.setAttribute("href", "./index.html");
+    link.innerText = "Go Back";
+
+    btnGoBack.append(link);
+
+    divQuiz.append(btnGoBack);
 }
 
 // Timer function
@@ -77,7 +88,9 @@ const getFromLocalStorage = function (key, defaultValue) {
     }
   };
 
-const storeScore = function () {
+const storeScore = function (event) {
+    event.preventDefault();
+
     // get count value
     const score = allowedTime;
   
@@ -98,6 +111,9 @@ const storeScore = function () {
   
     // write back to LS
     localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    // Send to highscores page
+    location.assign("./highscores.html");
   };
 
 // Function to render when the questions finish
