@@ -16,6 +16,11 @@ html {
     font-size: 10px;
 }
 
+body {
+    background-color: var(--light);
+    color: var(--darkGrey)
+}
+
 /* Styling for the top bar */
 .top-bar {
     font-size: 3.5rem;
@@ -96,9 +101,10 @@ textarea {
 /* Gam Over  (JS) */
 .game-over {
     text-align: center;
-    background-color: var(--darkGrey);
+    background-color: var(--black);
     color: var(--red);
     margin-top: 4rem;
+    padding: 5rem 0rem;
 }
 
 /* Mobile view */

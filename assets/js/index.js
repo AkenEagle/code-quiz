@@ -33,6 +33,7 @@ let allowedTime = questions.length * 5; // How many seconds will the timer be se
 // Function to render out of time
 const renderGameOver = function () {
     divQuiz.innerHTML = "";
+
     const divContainer = document.createElement("div");
     divContainer.setAttribute("class", "game-over");
   
@@ -95,7 +96,7 @@ const removeFeedback = function () {
 // Function to handle an answer
 const handleAnswer = function (event) {
     const target = event.target;
-    
+
     if(target.getAttribute("class") === "btn-answer") {
         const clickedAnswer = target.textContent;
         let feedbackAnswer;
