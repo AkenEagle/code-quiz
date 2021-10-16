@@ -60,7 +60,7 @@ const goBackBtn = document.getElementById("go-back-btn");
 const clearScoresBtn = document.getElementById("clear-scores-btn");
 
 const goBack = function () {
-  location.assign("/index.html");
+  location.assign("/");
 };
 
 const clearScores = function () {

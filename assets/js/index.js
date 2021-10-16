@@ -48,7 +48,7 @@ const renderGameOver = function () {
     btnGoBack.setAttribute("class", "btn-start btn-goback");
 
     const link = document.createElement("a");
-    link.setAttribute("href", "./index.html");
+    link.setAttribute("href", "/");
     link.innerText = "Go Back";
 
     btnGoBack.append(link);
