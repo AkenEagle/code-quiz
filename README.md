@@ -29,4 +29,4 @@ This is a timed quiz about HTML/CSS/JavaScript related questions, just like in s
 
 ## PREVIEW
 
-![preview](./assets/images/screenshots/preview.jpg)
+![preview](./assets/images/preview.jpg)
