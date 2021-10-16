@@ -93,35 +93,39 @@ const removeFeedback = function () {
 }
 
 // Function to handle an answer
-const handleAnswer = function () {
-    const clickedAnswer = this.textContent;
-    let feedbackAnswer;
-    if (clickedAnswer === questions[quizStep].correct) {
-        feedbackAnswer = "Correct!";
-        quizStep += 1;
-        if(quizStep == questions.length) {
-            clearInterval(timer);
-            renderFinished();
+const handleAnswer = function (event) {
+    const target = event.target;
+    
+    if(target.getAttribute("class") === "btn-answer") {
+        const clickedAnswer = target.textContent;
+        let feedbackAnswer;
+        if (clickedAnswer === questions[quizStep].correct) {
+            feedbackAnswer = "Correct!";
+            quizStep += 1;
+            if(quizStep == questions.length) {
+                clearInterval(timer);
+                renderFinished();
+            } else {
+                renderNextQuestion();
+            }
         } else {
-            renderNextQuestion();
+            allowedTime -= 3;
+            feedbackAnswer = "Wrong!";
         }
-    } else {
-        allowedTime -= 3;
-        feedbackAnswer = "Wrong!";
+    
+        // Display feedback
+        if(!document.getElementById("answer-feedback")) {
+            const divFeedback = document.createElement("div");
+            divFeedback.setAttribute("class", "answer-feedback");
+            divFeedback.setAttribute("id", "answer-feedback");
+            divFeedback.textContent = feedbackAnswer;
+            document.body.appendChild(divFeedback);    
+        } else {
+            clearInterval(feedbackTimer);
+            document.getElementById("answer-feedback").textContent = feedbackAnswer;
+        }
+        feedbackTimer = setInterval(removeFeedback, 1000);
     }
-
-    // Display feedback
-    if(!document.getElementById("answer-feedback")) {
-        const divFeedback = document.createElement("div");
-        divFeedback.setAttribute("class", "answer-feedback");
-        divFeedback.setAttribute("id", "answer-feedback");
-        divFeedback.textContent = feedbackAnswer;
-        document.body.appendChild(divFeedback);    
-    } else {
-        clearInterval(feedbackTimer);
-        document.getElementById("answer-feedback").textContent = feedbackAnswer;
-    }
-    feedbackTimer = setInterval(removeFeedback, 1000);
 }
 
 // Function to render first question
@@ -143,7 +147,6 @@ const renderFirstQuestion = function () {
         const answer = document.createTextNode(questions[quizStep].answers[i]);
         btn.appendChild(answer);
         divQuiz.appendChild(btn);
-        btn.addEventListener("click", handleAnswer);
     }
 }
 
@@ -157,6 +160,9 @@ const startQuiz = function () {
 
     // Render first question
     renderFirstQuestion();
+
+    // Add click event to the options
+    divQuiz.addEventListener('click', handleAnswer);
 }
 
 // Assign function to the button click event
