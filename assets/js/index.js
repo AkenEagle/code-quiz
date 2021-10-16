@@ -111,7 +111,7 @@ const renderFinished = function () {
   
     const h2Element = document.createElement("h2");
     h2Element.setAttribute("class", "question");
-    h2Element.textContent = "Your score is " + allowedTime;
+    h2Element.textContent = "All Done! Your score is " + allowedTime;
   
     const formContainer = document.createElement("div");
     formContainer.setAttribute("class", "form-container");
@@ -127,7 +127,7 @@ const renderFinished = function () {
     formButtonDiv.setAttribute("class", "form-item");
   
     const formButton = document.createElement("button");
-    formButton.setAttribute("class", "btn");
+    formButton.setAttribute("class", "btn-start");
     formButton.textContent = "Submit";
   
     formInputDiv.append(formInput);

@@ -110,6 +110,19 @@ textarea {
     padding: 5rem 0rem;
 }
 
+.score-form * {
+    margin-bottom: 1.2rem;
+} 
+
+input {
+    padding: 1.2rem;
+    font-size: 2rem;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--darkGrey);
+    border-radius: 4px;
+}
+
 /* Mobile view */
 @media only screen and (max-width: 576px) {
     .top-bar {
